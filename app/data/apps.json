@@ -1,0 +1,21 @@
+{
+    "calculator": {
+        "open": "calc.exe",
+        "process": "CalculatorApp.exe"
+    },
+
+    "notepad": {
+        "open": "notepad.exe",
+        "process": "notepad.exe"
+    },
+
+    "chrome": {
+        "open": "chrome.exe",
+        "process": "chrome.exe"
+    },
+
+    "vscode": {
+        "open": "code",
+        "process": "Code.exe"
+    }
+}
