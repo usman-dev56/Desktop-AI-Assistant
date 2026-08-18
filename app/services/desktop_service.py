@@ -18,7 +18,6 @@ class DesktopService:
     """Desktop application service."""
 
     def __init__(self) -> None:
-
         self.apps = data_manager.load("apps.json")
 
         logger.info("Desktop service initialized.")
@@ -33,13 +32,19 @@ class DesktopService:
         app = self.apps.get(app_name)
 
         if not app:
-            logger.warning("Unknown application: %s", app_name)
+            logger.warning(
+                "Unknown application: %s",
+                app_name,
+            )
             return False
 
         try:
             subprocess.Popen(app["open"])
 
-            logger.info("Opened application: %s", app_name)
+            logger.info(
+                "Opened application: %s",
+                app_name,
+            )
 
             return True
 
@@ -48,11 +53,16 @@ class DesktopService:
                 "Failed to open %s",
                 app_name,
             )
+
             return False
 
     def close(self, app_name: str) -> bool:
         """
         Close desktop application.
+
+        Returns:
+            True if the application was found and closed.
+            False if the application was not running.
         """
 
         app_name = app_name.lower().strip()
@@ -60,7 +70,10 @@ class DesktopService:
         app = self.apps.get(app_name)
 
         if not app:
-            logger.warning("Unknown application: %s", app_name)
+            logger.warning(
+                "Unknown application: %s",
+                app_name,
+            )
             return False
 
         process_name = app["process"].lower()
@@ -72,7 +85,6 @@ class DesktopService:
         ):
 
             try:
-
                 name = process.info["name"]
 
                 if not name:
@@ -90,20 +102,18 @@ class DesktopService:
 
                     closed = True
 
+                    logger.info(
+                        "Closed application: %s",
+                        app_name,
+                    )
+
             except (
                 psutil.NoSuchProcess,
                 psutil.AccessDenied,
             ):
                 continue
 
-        if closed:
-
-            logger.info(
-                "Closed application: %s",
-                app_name,
-            )
-
-        else:
+        if not closed:
 
             logger.warning(
                 "%s is not running.",

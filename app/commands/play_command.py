@@ -1,5 +1,7 @@
 """
 Play command.
+
+Handles natural-language music requests.
 """
 
 from __future__ import annotations
@@ -9,19 +11,54 @@ from app.services.music_service import MusicService
 
 
 class PlayCommand(BaseCommand):
-    """Handles play commands."""
+    """Handles music playback commands."""
+
+    PLAY_PHRASES = (
+        "play ",
+        "listen to ",
+        "listen ",
+        "start playing ",
+        "start play ",
+    )
+
+    TRAILING_WORDS = (
+        "for me",
+        "please",
+    )
 
     def __init__(self) -> None:
 
         self.music = MusicService()
 
     def can_handle(self, command: str) -> bool:
+        """Check whether the command is a music request."""
 
-        return command.startswith("play ")
+        command = command.lower().strip()
+
+        return command.startswith(self.PLAY_PHRASES)
 
     def execute(self, command: str) -> str:
+        """Play the requested song."""
 
-        query = command.removeprefix("play").strip()
+        command = command.lower().strip()
+
+        query = ""
+
+        # Find and remove the play phrase.
+        for phrase in self.PLAY_PHRASES:
+
+            if command.startswith(phrase):
+
+                query = command[len(phrase):].strip()
+
+                break
+
+        # Remove unnecessary trailing words.
+        for suffix in self.TRAILING_WORDS:
+
+            if query.endswith(suffix):
+
+                query = query[: -len(suffix)].strip()
 
         if not query:
 
@@ -31,4 +68,4 @@ class PlayCommand(BaseCommand):
 
             return f"Playing {query}."
 
-        return "Sorry, I couldn't play that."
+        return f"Sorry, I couldn't find {query}."

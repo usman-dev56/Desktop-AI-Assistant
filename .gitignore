@@ -4,11 +4,14 @@ __pycache__/
 *$py.class
 *.so
 .Python
+
+# Virtual environments
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
+.venv/
 
 # IDE
 .vscode/
@@ -22,7 +25,8 @@ logs/
 data/*.json
 !data/music.json
 .env
-*.pyc
+
+# OS
 .DS_Store
 Thumbs.db
 

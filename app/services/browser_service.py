@@ -4,6 +4,7 @@ Browser service.
 
 from __future__ import annotations
 
+import urllib.parse
 import webbrowser
 
 from app.core.data_manager import data_manager
@@ -32,13 +33,10 @@ class BrowserService:
         """
         Open a website in the default browser.
 
-        Args:
-            website: Website name.
-
         Returns:
             tuple:
-                (True, Display Name)  -> Success
-                (False, None)         -> Failed
+                (True, Display Name) -> Success
+                (False, None) -> Failed
         """
 
         website = website.lower().strip()
@@ -57,7 +55,10 @@ class BrowserService:
                 website.title(),
             )
 
-            logger.info("Opened website: %s", display_name)
+            logger.info(
+                "Opened website: %s",
+                display_name,
+            )
 
             return True, display_name
 
@@ -69,3 +70,45 @@ class BrowserService:
             )
 
             return False, None
+
+    def search(self, query: str) -> bool:
+        """
+        Search the web using Google.
+
+        Args:
+            query: Search query.
+
+        Returns:
+            True if the browser search was opened.
+        """
+
+        query = query.strip()
+
+        if not query:
+            logger.warning("Empty search query.")
+            return False
+
+        encoded_query = urllib.parse.quote_plus(query)
+
+        url = (
+            "https://www.google.com/search?q="
+            f"{encoded_query}"
+        )
+
+        try:
+            webbrowser.open(url)
+
+            logger.info(
+                "Web search opened for: %s",
+                query,
+            )
+
+            return True
+
+        except Exception as error:
+            logger.exception(
+                "Failed to perform web search: %s",
+                error,
+            )
+
+            return False

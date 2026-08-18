@@ -1,5 +1,7 @@
 """
 Screenshot command.
+
+
 """
 
 from __future__ import annotations
@@ -11,11 +13,14 @@ from app.services.screenshot_service import ScreenshotService
 class ScreenshotCommand(BaseCommand):
     """Handles screenshot commands."""
 
-    KEYWORDS = (
+    SCREENSHOT_PHRASES = (
         "screenshot",
         "take screenshot",
+        "take a screenshot",
         "capture screen",
         "capture screenshot",
+        "capture the screen",
+        "capture my screen",
     )
 
     def __init__(self) -> None:
@@ -23,10 +28,16 @@ class ScreenshotCommand(BaseCommand):
         self.service = ScreenshotService()
 
     def can_handle(self, command: str) -> bool:
+        """Check whether the command is a screenshot request."""
 
-        return command in self.KEYWORDS
+        command = command.lower().strip()
+
+        return command.startswith(
+            self.SCREENSHOT_PHRASES
+        )
 
     def execute(self, command: str) -> str:
+        """Capture and save a screenshot."""
 
         path = self.service.capture()
 
