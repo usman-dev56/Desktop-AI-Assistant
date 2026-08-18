@@ -15,12 +15,14 @@ from app.commands.close_command import CloseCommand
 from app.commands.window_command import WindowCommand
 from app.commands.screenshot_command import ScreenshotCommand
 from app.commands.weather_command import WeatherCommand
+from app.commands.knowledge_command import KnowledgeCommand
+from app.commands.reminder_command import ReminderCommand
 
 
 class CommandRouter:
     """Routes normalized commands to command handlers."""
 
-    def __init__(self) -> None:
+    def __init__(self, speaker) -> None:
 
         self.commands = [
             ExitCommand(),
@@ -34,6 +36,8 @@ class CommandRouter:
             WindowCommand(),
             ScreenshotCommand(),
             WeatherCommand(),
+            KnowledgeCommand(),
+            ReminderCommand(speaker),
         ]
 
     def handle(self, command: str) -> str:

@@ -15,8 +15,8 @@ from app.utils.logger import logger
 class CommandProcessor:
     """Processes user commands."""
 
-    def __init__(self) -> None:
-        self.router = CommandRouter()
+    def __init__(self, speaker) -> None:
+        self.router = CommandRouter(speaker)
 
     def process(self, command: str) -> str:
         """

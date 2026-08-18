@@ -28,9 +28,7 @@ class CommandParser:
         "would",
         "can",
         "you",
-        "me",
         "my",
-        "to",
     }
 
     ALIASES = {

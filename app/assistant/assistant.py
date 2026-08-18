@@ -20,7 +20,7 @@ class Assistant:
 
         self.listener = Listener()
         self.speaker = Speaker()
-        self.processor = CommandProcessor()
+        self.processor = CommandProcessor(self.speaker)
 
         self.running = True
 
