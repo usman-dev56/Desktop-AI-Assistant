@@ -3,7 +3,7 @@
 
 A modular Python-based desktop voice assistant that allows users to control desktop applications, manage windows, open websites, perform web searches, play music, take screenshots, and interact with their computer using voice commands.
 
-> 🚀 This project is being developed as a learning and portfolio project and is currently being upgraded for the **Oasis Infobyte AICTE Internship — Python Programming Task 1**.
+> 🚀 This project is  developed as a learning and portfolio project and is  upgraded for the **Oasis Infobyte AICTE Internship — Python Programming Task 1**.
 
 ---
 
