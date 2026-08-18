@@ -3,7 +3,7 @@
 
 A modular Python-based desktop voice assistant that allows users to control desktop applications, manage windows, open websites, perform web searches, play music, take screenshots, and interact with their computer using voice commands.
 
-> 🚀 This project is being developed as a learning and portfolio project and is currently being upgraded for the **Oasis Infobyte AICTE Internship — Python Programming Task 1: Voice Assistant (Advanced Tier)**.
+> 🚀 This project is being developed as a learning and portfolio project and is currently being upgraded for the **Oasis Infobyte AICTE Internship — Python Programming Task 1**.
 
 ---
 
@@ -68,6 +68,16 @@ Play Study Music
 - Weather service integrated using the OpenWeatherMap API.
 - ⚠️ *Weather API integration is currently under testing because API authentication needs to be configured correctly.*
 
+
+### ⏰ Timed Reminders
+- Jarvis supports voice-controlled timed reminders.
+
+**Examples:**
+```text
+Remind me in 10 seconds
+Remind me in 10 seconds to drink water
+Remind me in 2 minutes to check my work
+```
 ---
 
 ## 🧠 Command Processing
@@ -150,33 +160,41 @@ The parser currently supports:
 ## 📁 Project Structure
 
 ```text
-Desktop-AI-Assistant/
+AI-Desktop-Assistant/
 │
 ├── app/
 │   ├── assistant/
+│   │   ├── assistant.py
 │   │   └── command_processor.py
 │   │
 │   ├── commands/
 │   │   ├── base.py
-│   │   ├── close_command.py
+│   │   ├── router.py
+│   │   ├── greeting_command.py
+│   │   ├── time_command.py
 │   │   ├── date_command.py
-│   │   ├── exit_command.py
+│   │   ├── search_command.py
 │   │   ├── open_command.py
 │   │   ├── play_command.py
-│   │   ├── search_command.py
+│   │   ├── close_command.py
+│   │   ├── window_command.py
 │   │   ├── screenshot_command.py
-│   │   ├── time_command.py
-│   │   └── window_command.py
+│   │   ├── weather_command.py
+│   │   ├── knowledge_command.py
+│   │   ├── reminder_command.py
+│   │   └── exit_command.py
 │   │
 │   ├── services/
 │   │   ├── browser_service.py
 │   │   ├── desktop_service.py
 │   │   ├── music_service.py
+│   │   ├── window_service.py
 │   │   ├── screenshot_service.py
 │   │   ├── time_service.py
 │   │   ├── date_service.py
-│   │   ├── window_service.py
-│   │   └── weather_service.py
+│   │   ├── weather_service.py
+│   │   ├── knowledge_service.py
+│   │   └── reminder_service.py
 │   │
 │   ├── speech/
 │   │   ├── listener.py
@@ -186,26 +204,26 @@ Desktop-AI-Assistant/
 │   │   └── data_manager.py
 │   │
 │   ├── utils/
+│   │   ├── command_parser.py
 │   │   └── logger.py
 │   │
-│   ├── models/
+│   ├── data/
+│   │   ├── apps.json
+│   │   ├── websites.json
+│   │   ├── music.json
+│   │   └── memory.json
 │   │
 │   ├── config.py
 │   └── main.py
 │
-├── data/
-│   └── music.json
-│
 ├── assets/
 ├── screenshots/
-├── logs/
-│
+├── roadmap.txt
+├── requirements.txt
+├── setup.py
 ├── .env.example
 ├── .gitignore
-├── README.md
-├── requirements.txt
-├── roadmap.txt
-└── setup.py
+└── README.md
 ```
 
 ---
@@ -392,7 +410,7 @@ The project follows a clean, modular architecture with clear separation of conce
 - **Voice Input & Output:** Decoupled listener and speaker modules.
 - **Command Pipeline:** Distinct stages for ingestion, normalization/parsing, and routing.
 - **Service Layer:** Independent handler services for desktop, browser, media, and utilities.
-- **Configuration & Logging:** Centralized runtime parameters and structured logging.
+
 
 ---
 
@@ -425,6 +443,5 @@ Distributed under the **MIT License**.
 ## 👨‍💻 Author
 
 **Usman**  
-*Python Developer | Backend Development Enthusiast*  
 - **GitHub:** [@usman-dev56](https://github.com/usman-dev56)
 
