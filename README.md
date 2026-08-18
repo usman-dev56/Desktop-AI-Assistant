@@ -427,5 +427,4 @@ Distributed under the **MIT License**.
 **Usman**  
 *Python Developer | Backend Development Enthusiast*  
 - **GitHub:** [@usman-dev56](https://github.com/usman-dev56)
-README.md
-Displaying README.md.
+
